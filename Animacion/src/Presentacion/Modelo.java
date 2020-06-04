@@ -16,6 +16,9 @@ public class Modelo implements Runnable{
     private Graphics lapiz; 
     private Director director;
     private Bomberman bomber;
+    //private boolean Controlar_especial;
+
+ 
     public Modelo() {
         director = new Director();
         director.setPersonaje(new ConstructorPerso(new FabricaBomberman()));
@@ -25,6 +28,8 @@ public class Modelo implements Runnable{
         getVista();
         hilo.start();
     }
+
+
    
     public void dibujar_personaje(){
        Lienzo = Vista.getLienzo();
@@ -35,7 +40,7 @@ public class Modelo implements Runnable{
        lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(),bomber.getPosy(), Lienzo);//se dibuja el personaje        
     }
     
-    public VistaAnimacion getVista() {
+    public  VistaAnimacion getVista() {
         if(Vista==null){
             Vista = new VistaAnimacion(this);
         }
@@ -57,6 +62,7 @@ public class Modelo implements Runnable{
     /**
      *  estos metodos son para evaluar el momiento del personaje 
      */
+    
     public void movR() {
         bomber.Mover_derecha();
     }
@@ -71,6 +77,11 @@ public class Modelo implements Runnable{
 
     public void movD() {
         bomber.Mover_abajo();
+    }
+    public void Esp() {
+        bomber.Especial();
+
+
     }
 
 }

@@ -6,9 +6,10 @@ import java.awt.event.KeyListener;
 public class Controlador implements KeyListener {
 
     private VistaAnimacion vista;
-
+    private boolean Controlar_Especial;
     public Controlador(VistaAnimacion vista) {
         this.vista = vista;
+        this.Controlar_Especial=false;
     }
 
     @Override
@@ -18,6 +19,7 @@ public class Controlador implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+    if(this.Controlar_Especial==false){
         if (e.getKeyCode() == e.VK_RIGHT) {
             vista.getModeloA().movR();
         }
@@ -30,10 +32,18 @@ public class Controlador implements KeyListener {
         if (e.getKeyCode() == e.VK_DOWN) {
             vista.getModeloA().movD();
         }
+      }
+        if (e.getKeyCode() == e.VK_SPACE) {               
+            vista.getModeloA().Esp();      
+            this.Controlar_Especial=true;
+            
+        }
+    
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        this.Controlar_Especial=false;
         if (e.getKeyCode() == e.VK_RIGHT) {
             
         }
@@ -45,6 +55,10 @@ public class Controlador implements KeyListener {
         }
         if (e.getKeyCode() == e.VK_DOWN) {
 
+        }       
+        if (e.getKeyCode() == e.VK_SPACE) {
+             this.Controlar_Especial=true;
+             //System.out.println(Controlar_Especial);
         }
     }
 

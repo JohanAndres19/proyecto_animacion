@@ -1,17 +1,23 @@
 package Logic;
 
-import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import Logica.Fabricas.FabricaBomberman;
 
-public class Bomberman {
+public class Bomberman extends Thread{
 
     private ImageIcon imagenes[][];
     private ImageIcon Imagenac;
     private int Posx;
     private int Posy;
     private int a = 0;
+    private Thread hilo;
 
+    
+    public Thread getHilo() {
+        return hilo;
+    }
+ 
     public void setImagenac(ImageIcon Imagenac) {
         this.Imagenac = Imagenac;
     }
@@ -158,6 +164,25 @@ public class Bomberman {
         }
 
     }
+    public void Especial() {
+       hilo = new Thread(this);
+       hilo.start();  
+    }
+
+
+    @Override
+    public void run(){   
+             for (int i = 0; i < getImagenes()[4].length; i++) {
+             Imagenac = getImagenes()[4][i];     
+                 try {
+                     Thread.sleep(300);
+                 } catch (InterruptedException ex) {                
+                 }           
+           }
+  
+    }
+
+
 
     public ImageIcon[][] getImagenes() {
         return imagenes;

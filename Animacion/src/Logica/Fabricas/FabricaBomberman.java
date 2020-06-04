@@ -3,6 +3,7 @@ import Logica.Productos.SpritesBombermanA;
 import Logica.Productos.SpritesBombermanB;
 import Logica.Productos.SpritesBombermanD;
 import Logica.Productos.SpritesBombermanI;
+import Logica.Productos.SpritesBombermanE;
 import javax.swing.ImageIcon;
 
 public class FabricaBomberman implements FabricaAbstracta {
@@ -30,5 +31,17 @@ public class FabricaBomberman implements FabricaAbstracta {
         SpritesBombermanI izqui = new SpritesBombermanI();
         return izqui.Sprites_izquierda();
     }
+
+    @Override
+    public ImageIcon[] Especial() {
+        SpritesBombermanE Espe = new SpritesBombermanE();
+        return Espe.SpritesEspecial();
+    }
+
+    
+
+        
+                
+    
 
 }

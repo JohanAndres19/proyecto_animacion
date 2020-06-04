@@ -4,7 +4,7 @@ import java.awt.Image;
 
 public class Carpinteria_imagen {
  
-    public ImageIcon[]Arreglar_Imangen(String arreglo[]){  
+    public ImageIcon[] Arreglar_Imangen(String arreglo[]){  
         int Long = arreglo.length;                
         ImageIcon imagenesU[]= new ImageIcon[Long];
         for(int i=0;i<Long;i++){
