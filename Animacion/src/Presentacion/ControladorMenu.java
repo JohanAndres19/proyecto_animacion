@@ -24,12 +24,7 @@ public class ControladorMenu implements ActionListener{
         if(e.getSource()==menu.getPersonaje2()){
            menu.getModeloA().Ventana_personje(2);
         }
-        if(e.getSource()==menu.getPersonaje3()){
-           
-        }
-        if(e.getSource()==menu.getPersonaje4()){
-           
-        }
+        
 
     }
     

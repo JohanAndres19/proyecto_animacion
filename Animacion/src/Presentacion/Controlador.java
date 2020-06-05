@@ -33,7 +33,6 @@ public class Controlador implements KeyListener {
             vista.getModeloA().movE();
         }
         if(e.getKeyCode()== e.VK_ESCAPE){
-            System.out.println(vista.getModeloA().getEstado());
             if(vista.getModeloA().getEstado()==0){
                 vista.getModeloA().Ventana_personje(1);
             }

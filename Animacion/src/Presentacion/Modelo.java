@@ -10,8 +10,6 @@ import Logica.Fabricas.*;
 import Logic.Director;
 import Logic.Ninja;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Modelo implements Runnable {
 
@@ -26,6 +24,7 @@ public class Modelo implements Runnable {
     private Bomberman bomber;
     private Ninja nin;
     private int estado;
+
     public Modelo() {
         director = new Director();
         doblebuffer = new BufferedImage(getVista().getLienzo().getWidth(), getVista().getLienzo().getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -40,26 +39,29 @@ public class Modelo implements Runnable {
                 if (getVistaM().isVisible() == true) {
                     hilo = new Thread(this);
                     director.setPersonaje(new ConstructorPerso(new FabricaBomberman()));
+                    System.out.println("esta entrando");
                     bomber = director.Get_Bomberman();
                     getVistaM().setVisible(false);
                     getVista().setVisible(true);
+                    nin = null;
                     hilo.start();
                 } else {
-                  getVista().setVisible(false);
-                  getVistaM().setVisible(true);  
+                    getVista().setVisible(false);
+                    getVistaM().setVisible(true);
                 }
                 break;
             case 2:
                 if (getVistaM().isVisible() == true) {
                     hilo = new Thread(this);
                     director.setPersonaje(new ConstructorPerso(new FabricaNinja()));
-                    bomber = director.Get_Bomberman();
+                    nin = director.Get_Ninja();
                     getVistaM().setVisible(false);
                     getVista().setVisible(true);
+                    bomber = null;
                     hilo.start();
                 } else {
-                  getVista().setVisible(false);
-                  getVistaM().setVisible(true);  
+                    getVista().setVisible(false);
+                    getVistaM().setVisible(true);
                 }
                 break;
             case 3:
@@ -78,7 +80,12 @@ public class Modelo implements Runnable {
         lapiz = doblebuffer.createGraphics();
         lapiz.setColor(Color.CYAN);
         lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo    
-        lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(), bomber.getPosy(), Lienzo);//se dibuja el personaje        
+        if (bomber == null) {
+            lapiz.drawImage(nin.getImagenac().getImage(), nin.getPosx(), nin.getPosy(), Lienzo);
+        }
+        if (nin == null) {
+            lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(), bomber.getPosy(), Lienzo);
+        }
     }
 
     public VistaAnimacion getVista() {
@@ -96,7 +103,12 @@ public class Modelo implements Runnable {
     }
 
     public int getEstado() {
-        return bomber.getVivo();
+        if (bomber != null) {
+            return bomber.getVivo();
+        } else {
+            return nin.getVivo();
+        }
+
     }
 
     /**
@@ -105,40 +117,74 @@ public class Modelo implements Runnable {
      */
     @Override
     public void run() {
-        while (bomber.getVivo() != 0 ) {
-            try {
-                Thread.sleep(70);
-            } catch (Exception e) {
+        if (bomber != null) {
+            while (bomber.getVivo() > 0) {
+                try {
+                    Thread.sleep(70);
+                } catch (Exception e) {
+                }
+                dibujar_personaje();
             }
-            if(bomber!=null){
-            dibujar_personaje();
-            }
-            if(nin!=null){
-            dibujar_personaje();
         }
-    }
+        if (nin != null) {
+            while (nin.getVivo() > 0) {
+                try {
+                    Thread.sleep(70);
+                } catch (Exception e) {
+                }
+                dibujar_personaje();
+            }
+            System.out.println(" ninja");
+        }
     }
 
     /**
      * estos metodos son para evaluar el momiento del personaje
      */
     public void movR() {
-        bomber.Mover_derecha();
+        if (bomber != null) {
+            bomber.Mover_derecha();
+        }
+        if (nin != null) {
+            nin.Mover_derecha();
+        }
     }
 
     public void movI() {
-        bomber.Mover_Izquierda();
+        if (bomber != null) {
+            bomber.Mover_Izquierda();
+        }
+        if (nin != null) {
+            nin.Mover_Izquierda();
+        }
     }
 
     public void movU() {
-        bomber.Mover_arriba();
+        if (bomber != null) {
+            bomber.Mover_arriba();
+        }
+        if (nin != null) {
+            nin.Mover_arriba();
+        }
     }
 
     public void movD() {
-        bomber.Mover_abajo();
+        if (bomber != null) {
+            bomber.Mover_abajo();
+        }
+        if (nin != null) {
+            nin.Mover_abajo();
+        }
     }
 
     public void movE() {
-        bomber.Movimiento_espcial();
+        if (getEstado() >= 0) {
+            if (bomber != null) {
+                bomber.Movimiento_espcial();
+            }
+            if (nin != null) {
+                nin.Movimiento_espcial();
+            }
+        }
     }
 }

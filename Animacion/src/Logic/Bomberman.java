@@ -163,7 +163,7 @@ public class Bomberman {
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
-                if(getVivo()>=0){
+                if(getVivo()>0){
                     for(int i=0;i<getEspecial().length ;i++ ){
                         try{
                             Thread.sleep(100);

@@ -15,6 +15,7 @@ public class Director {
        bom.setImagenes(personaje.Get_Sprites());
        return bom;
     }
+    
     public Ninja Get_Ninja(){
        Ninja nin = new Ninja();
        nin.setEspecial(personaje.Get_spritesEs());
