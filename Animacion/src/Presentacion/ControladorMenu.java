@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Presentacion;
 
 import java.awt.event.ActionEvent;
@@ -13,24 +9,28 @@ import java.awt.event.ActionListener;
  * @author Guillermo Velez
  */
 public class ControladorMenu implements ActionListener{
-    private Menu menu;
+    private VistaMenu menu;
     
    
-    public ControladorMenu (Menu menu) {
+    public ControladorMenu (VistaMenu menu) {
         this.menu = menu;
-        this.menu.getPersonaje1().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==menu.getPersonaje1()){
-        menu.getModeloA().getVista().setVisible(true);
-        menu.getModeloA().Arrancar_hilo();
-           
-       
+           menu.getModeloA().Ventana_personje(1);
         }
-//To change body of generated methods, choose Tools | Templates.
+        if(e.getSource()==menu.getPersonaje2()){
+           
+        }
+        if(e.getSource()==menu.getPersonaje3()){
+           
+        }
+        if(e.getSource()==menu.getPersonaje4()){
+           
+        }
+
     }
     
-
 }

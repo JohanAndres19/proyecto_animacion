@@ -11,9 +11,9 @@ public class ConstructorPerso {
        this.fabrica= fabrica;
     }
     public ImageIcon[][] Get_Sprites(){
-        ImageIcon imagenes [][]= new ImageIcon[5][5];
+        ImageIcon imagenes [][]= new ImageIcon[4][5];
         ImageIcon aux[];
-        for(int i =0; i<=4;i++){
+        for(int i =0; i<4;i++){
             for(int j=0;j<5;j++){
                 switch (i){
                     case 0:
@@ -31,15 +31,14 @@ public class ConstructorPerso {
                     case 3:
                         aux=fabrica.Mover_izquierda();
                         imagenes[i][j]=aux[j];
-                    break; 
-                    case 4:
-                        aux=fabrica.Especial();
-                        imagenes[i][j]=aux[j];
-                    break; 
+                    break;    
                 }
             }
         }
       return imagenes;   
     }
-            
+    public ImageIcon[] Get_spritesEs(){
+        ImageIcon aux[]=fabrica.Movimiento_especial();
+     return aux;   
+    }      
 }

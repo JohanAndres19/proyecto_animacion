@@ -1,26 +1,22 @@
 package Presentacion;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Controlador implements KeyListener{
+
+public class Controlador implements KeyListener {
 
     private VistaAnimacion vista;
-    private boolean Controlar_Especial;
     public Controlador(VistaAnimacion vista) {
         this.vista = vista;
-        this.Controlar_Especial=false;
     }
-   
+
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
-    if(this.Controlar_Especial==false){
         if (e.getKeyCode() == e.VK_RIGHT) {
             vista.getModeloA().movR();
         }
@@ -33,36 +29,22 @@ public class Controlador implements KeyListener{
         if (e.getKeyCode() == e.VK_DOWN) {
             vista.getModeloA().movD();
         }
-      }
-        if (e.getKeyCode() == e.VK_SPACE) {               
-            vista.getModeloA().Esp();      
-            this.Controlar_Especial=true;
-            
+        if(e.getKeyCode()==e.VK_SPACE){
+            vista.getModeloA().movE();
         }
-    
+        if(e.getKeyCode()== e.VK_ESCAPE){
+            if(vista.getModeloA().getEstado()==0){
+                vista.getModeloA().Ventana_personje(1);
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        this.Controlar_Especial=false;
-        if (e.getKeyCode() == e.VK_RIGHT) {
-            
-        }
-        if (e.getKeyCode() == e.VK_LEFT) {
-
-        }
-        if (e.getKeyCode() == e.VK_UP) {
-
-        }
-        if (e.getKeyCode() == e.VK_DOWN) {
-
-        }       
-        if (e.getKeyCode() == e.VK_SPACE) {
-             this.Controlar_Especial=true;
-             //System.out.println(Controlar_Especial);
-        }
+       
     }
 
- 
+   
 
 }
+ 

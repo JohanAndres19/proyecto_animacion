@@ -2,8 +2,8 @@ package Logica.Fabricas;
 import Logica.Productos.SpritesBombermanA;
 import Logica.Productos.SpritesBombermanB;
 import Logica.Productos.SpritesBombermanD;
-import Logica.Productos.SpritesBombermanI;
 import Logica.Productos.SpritesBombermanE;
+import Logica.Productos.SpritesBombermanI;
 import javax.swing.ImageIcon;
 
 public class FabricaBomberman implements FabricaAbstracta {
@@ -33,15 +33,9 @@ public class FabricaBomberman implements FabricaAbstracta {
     }
 
     @Override
-    public ImageIcon[] Especial() {
-        SpritesBombermanE Espe = new SpritesBombermanE();
-        return Espe.SpritesEspecial();
+    public ImageIcon[] Movimiento_especial() {
+        SpritesBombermanE especial = new SpritesBombermanE();
+        return especial.Sprites_especial();
     }
-
-    
-
-        
-                
-    
 
 }

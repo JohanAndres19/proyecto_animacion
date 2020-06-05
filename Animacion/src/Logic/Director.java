@@ -1,5 +1,5 @@
 package Logic;
-import Logica.Fabricas.*;
+import Logica.Fabricas.*;  
 public class Director {
 
     private ConstructorPerso personaje;
@@ -11,9 +11,11 @@ public class Director {
     
     public Bomberman Get_Bomberman(){
        Bomberman bom = new Bomberman();
+       bom.setEspecial(personaje.Get_spritesEs());
        bom.setImagenes(personaje.Get_Sprites());
        return bom;
     }
     
 
 }
+  

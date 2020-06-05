@@ -1,4 +1,5 @@
 package Presentacion;
+
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,87 +8,103 @@ import Logic.Bomberman;
 import Logic.ConstructorPerso;
 import Logica.Fabricas.*;
 import Logic.Director;
-public class Modelo implements Runnable{
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Modelo implements Runnable {
+
     private VistaAnimacion Vista;
-    private Menu menu; 
+    private VistaMenu VistaM;
     private BufferedImage doblebuffer;
     private Thread hilo;
     private Canvas Lienzo;
     private Graphics lapizc;
-    private Graphics lapiz; 
+    private Graphics lapiz;
     private Director director;
     private Bomberman bomber;
-    private boolean Personaje= false;
-    //private boolean Controlar_especial;
-
-    public void setHilo(Thread hilo) {
-        this.hilo = hilo;
-    }
-
- 
+    private int estado;
     public Modelo() {
-        getMenu();
-        getVista().setVisible(false);
-        System.out.println(getVista().isVisible());
         director = new Director();
-        System.out.println(Personaje);
-        director.setPersonaje(new ConstructorPerso(new FabricaBomberman()));
-        bomber= director.Get_Bomberman();  
-        doblebuffer = new BufferedImage(getVista().getLienzo().getWidth(), getVista().getLienzo().getHeight(),BufferedImage.TYPE_INT_ARGB);
-        
-    }
-    public void Arrancar_hilo(){
-        hilo = new Thread(this);
-        hilo.start();
-    }
-    public void setPersonaje(boolean Personaje) {
-        this.Personaje = Personaje;
+        doblebuffer = new BufferedImage(getVista().getLienzo().getWidth(), getVista().getLienzo().getHeight(), BufferedImage.TYPE_INT_ARGB);
     }
 
-    
+    public void Ventana_personje(int estado) {
+        switch (estado) {
+            case 0:
+                getVistaM().setVisible(true);
+                break;
+            case 1:
+                if (getVistaM().isVisible() == true) {
+                    hilo = new Thread(this);
+                    director.setPersonaje(new ConstructorPerso(new FabricaBomberman()));
+                    bomber = director.Get_Bomberman();
+                    getVistaM().setVisible(false);
+                    getVista().setVisible(true);
+                    hilo.start();
+                } else {
+                  getVista().setVisible(false);
+                  getVistaM().setVisible(true);  
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
 
-
-   
-    public void dibujar_personaje(){
-       Lienzo = Vista.getLienzo();
-       lapizc = Lienzo.getGraphics();
-       lapizc.drawImage(doblebuffer, 0, 0, Lienzo);
-       lapiz = doblebuffer.createGraphics();
-       lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo
-       lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(),bomber.getPosy(), Lienzo);//se dibuja el personaje        
-    }
-     public Menu getMenu() {
-        if(menu==null){
-            menu = new Menu(this);
         }
-        return menu;
+
     }
-    public  VistaAnimacion getVista() {
-        if(Vista==null){
+
+    public void dibujar_personaje() {
+        Lienzo = getVista().getLienzo();
+        lapizc = Lienzo.getGraphics();
+        lapizc.drawImage(doblebuffer, 0, 0, Lienzo);
+        lapiz = doblebuffer.createGraphics();
+        lapiz.setColor(Color.CYAN);
+        lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo
+        lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(), bomber.getPosy(), Lienzo);//se dibuja el personaje        
+    }
+
+    public VistaAnimacion getVista() {
+        if (Vista == null) {
             Vista = new VistaAnimacion(this);
         }
         return Vista;
     }
+
+    public VistaMenu getVistaM() {
+        if (VistaM == null) {
+            VistaM = new VistaMenu(this);
+        }
+        return VistaM;
+    }
+
+    public int getEstado() {
+        return bomber.getVivo();
+    }
+
     /**
-     * este metodo es el run del hiloesto permite que se dibuje siempre que la pantalla sea visible 
+     * este metodo es el run del hiloesto permite que se dibuje siempre que la
+     * pantalla sea visible
      */
-    
     @Override
     public void run() {
-       while(getVista().isVisible()){
-           try{
-               Thread.sleep(70);
-           }catch(Exception e){
-           }
+        while (bomber.getVivo() != 0) {
+            try {
+                Thread.sleep(70);
+            } catch (Exception e) {
+            }
+            dibujar_personaje();
 
-          dibujar_personaje();
-       } 
+        }
     }
-    
+
     /**
-     *  estos metodos son para evaluar el momiento del personaje 
+     * estos metodos son para evaluar el momiento del personaje
      */
-    
     public void movR() {
         bomber.Mover_derecha();
     }
@@ -103,10 +120,8 @@ public class Modelo implements Runnable{
     public void movD() {
         bomber.Mover_abajo();
     }
-    public void Esp() {
-        bomber.Especial();
 
-
+    public void movE() {
+        bomber.Movimiento_espcial();
     }
-
 }

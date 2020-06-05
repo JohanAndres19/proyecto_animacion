@@ -1,23 +1,18 @@
 package Logic;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import Logica.Fabricas.FabricaBomberman;
 
-public class Bomberman extends Thread{
+public class Bomberman {
 
     private ImageIcon imagenes[][];
+    private ImageIcon especial[];
     private ImageIcon Imagenac;
+    private int vivo=5;
     private int Posx;
     private int Posy;
     private int a = 0;
-    private Thread hilo;
 
-    
-    public Thread getHilo() {
-        return hilo;
-    }
- 
     public void setImagenac(ImageIcon Imagenac) {
         this.Imagenac = Imagenac;
     }
@@ -164,26 +159,42 @@ public class Bomberman extends Thread{
         }
 
     }
-    public void Especial() {
-       hilo = new Thread(this);
-       hilo.start();  
+    public void Movimiento_espcial(){
+        Thread hilo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if(getVivo()>=0){
+                    for(int i=0;i<getEspecial().length ;i++ ){
+                        try{
+                            Thread.sleep(100);
+                        }catch(Exception e){                           
+                        }
+                        Imagenac= getEspecial()[i];
+                        setImagenac(Imagenac);
+                    }
+                    setVivo(vivo-1);
+                }
+            }
+        });
+        hilo.start();
     }
 
-
-    @Override
-    public void run(){   
-             for (int i = 0; i < getImagenes()[4].length; i++) {
-             Imagenac = getImagenes()[4][i];     
-                 try {
-                     Thread.sleep(300);
-                 } catch (InterruptedException ex) {                
-                 }           
-           }
-  
+    public ImageIcon[] getEspecial() {
+        return especial;
     }
 
+    public void setEspecial(ImageIcon[] especial) {
+        this.especial = especial;
+    }
 
+    public int getVivo() {
+        return vivo;
+    }
 
+    public void setVivo(int vivo) {
+        this.vivo = vivo;
+    }
+    
     public ImageIcon[][] getImagenes() {
         return imagenes;
     }
@@ -194,11 +205,6 @@ public class Bomberman extends Thread{
 
     public ImageIcon getImagenac() {
         if (Imagenac == null) {
-            try {
-                Thread.sleep(100);
-            } catch (Exception e) {
-
-            }
             Imagenac = getImagenes()[0][0];
         }
         return Imagenac;
