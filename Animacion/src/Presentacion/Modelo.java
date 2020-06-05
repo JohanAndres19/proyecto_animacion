@@ -8,6 +8,7 @@ import Logic.Bomberman;
 import Logic.ConstructorPerso;
 import Logica.Fabricas.*;
 import Logic.Director;
+import Logic.Ninja;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ public class Modelo implements Runnable {
     private Graphics lapiz;
     private Director director;
     private Bomberman bomber;
+    private Ninja nin;
     private int estado;
     public Modelo() {
         director = new Director();
@@ -48,6 +50,17 @@ public class Modelo implements Runnable {
                 }
                 break;
             case 2:
+                if (getVistaM().isVisible() == true) {
+                    hilo = new Thread(this);
+                    director.setPersonaje(new ConstructorPerso(new FabricaNinja()));
+                    bomber = director.Get_Bomberman();
+                    getVistaM().setVisible(false);
+                    getVista().setVisible(true);
+                    hilo.start();
+                } else {
+                  getVista().setVisible(false);
+                  getVistaM().setVisible(true);  
+                }
                 break;
             case 3:
                 break;
@@ -64,7 +77,7 @@ public class Modelo implements Runnable {
         lapizc.drawImage(doblebuffer, 0, 0, Lienzo);
         lapiz = doblebuffer.createGraphics();
         lapiz.setColor(Color.CYAN);
-        lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo
+        lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo    
         lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(), bomber.getPosy(), Lienzo);//se dibuja el personaje        
     }
 
@@ -92,14 +105,18 @@ public class Modelo implements Runnable {
      */
     @Override
     public void run() {
-        while (bomber.getVivo() != 0) {
+        while (bomber.getVivo() != 0 ) {
             try {
                 Thread.sleep(70);
             } catch (Exception e) {
             }
+            if(bomber!=null){
             dibujar_personaje();
-
+            }
+            if(nin!=null){
+            dibujar_personaje();
         }
+    }
     }
 
     /**

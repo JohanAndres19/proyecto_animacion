@@ -10,7 +10,7 @@ public class Carpinteria_imagen {
         for(int i=0;i<Long;i++){
             ImageIcon image3  = new ImageIcon ( getClass().getResource(arreglo[i]));
             Image im3 = image3.getImage();
-            Image tamaño3 =im3.getScaledInstance(20,40,Image.SCALE_SMOOTH);
+            Image tamaño3 =im3.getScaledInstance(60,120,Image.SCALE_SMOOTH);
             ImageIcon aux3 = new ImageIcon(tamaño3);   
             imagenesU[i]=aux3;
         } 
