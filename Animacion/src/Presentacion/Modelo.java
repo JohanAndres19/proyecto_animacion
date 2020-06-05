@@ -9,6 +9,7 @@ import Logica.Fabricas.*;
 import Logic.Director;
 public class Modelo implements Runnable{
     private VistaAnimacion Vista;
+    private Menu menu; 
     private BufferedImage doblebuffer;
     private Thread hilo;
     private Canvas Lienzo;
@@ -16,18 +17,34 @@ public class Modelo implements Runnable{
     private Graphics lapiz; 
     private Director director;
     private Bomberman bomber;
+    private boolean Personaje= false;
     //private boolean Controlar_especial;
+
+    public void setHilo(Thread hilo) {
+        this.hilo = hilo;
+    }
 
  
     public Modelo() {
+        getMenu();
+        getVista().setVisible(false);
+        System.out.println(getVista().isVisible());
         director = new Director();
+        System.out.println(Personaje);
         director.setPersonaje(new ConstructorPerso(new FabricaBomberman()));
-        bomber= director.Get_Bomberman();
-        hilo = new Thread(this);
+        bomber= director.Get_Bomberman();  
         doblebuffer = new BufferedImage(getVista().getLienzo().getWidth(), getVista().getLienzo().getHeight(),BufferedImage.TYPE_INT_ARGB);
-        getVista();
+        
+    }
+    public void Arrancar_hilo(){
+        hilo = new Thread(this);
         hilo.start();
     }
+    public void setPersonaje(boolean Personaje) {
+        this.Personaje = Personaje;
+    }
+
+    
 
 
    
@@ -39,7 +56,12 @@ public class Modelo implements Runnable{
        lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo
        lapiz.drawImage(bomber.getImagenac().getImage(), bomber.getPosx(),bomber.getPosy(), Lienzo);//se dibuja el personaje        
     }
-    
+     public Menu getMenu() {
+        if(menu==null){
+            menu = new Menu(this);
+        }
+        return menu;
+    }
     public  VistaAnimacion getVista() {
         if(Vista==null){
             Vista = new VistaAnimacion(this);
@@ -49,6 +71,7 @@ public class Modelo implements Runnable{
     /**
      * este metodo es el run del hiloesto permite que se dibuje siempre que la pantalla sea visible 
      */
+    
     @Override
     public void run() {
        while(getVista().isVisible()){
@@ -56,9 +79,11 @@ public class Modelo implements Runnable{
                Thread.sleep(70);
            }catch(Exception e){
            }
+
           dibujar_personaje();
        } 
     }
+    
     /**
      *  estos metodos son para evaluar el momiento del personaje 
      */

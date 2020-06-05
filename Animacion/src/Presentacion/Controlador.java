@@ -1,9 +1,11 @@
 package Presentacion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Controlador implements KeyListener {
+public class Controlador implements KeyListener{
 
     private VistaAnimacion vista;
     private boolean Controlar_Especial;
@@ -11,12 +13,11 @@ public class Controlador implements KeyListener {
         this.vista = vista;
         this.Controlar_Especial=false;
     }
-
+   
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
     if(this.Controlar_Especial==false){
@@ -61,5 +62,7 @@ public class Controlador implements KeyListener {
              //System.out.println(Controlar_Especial);
         }
     }
+
+ 
 
 }
