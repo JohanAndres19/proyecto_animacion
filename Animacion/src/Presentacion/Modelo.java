@@ -78,7 +78,7 @@ public class Modelo implements Runnable {
         lapizc = Lienzo.getGraphics();
         lapizc.drawImage(doblebuffer, 0, 0, Lienzo);
         lapiz = doblebuffer.createGraphics();
-        lapiz.setColor(Color.CYAN);
+        lapiz.setColor(Color.black);
         lapiz.fillRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());// se dibuja el fondo    
         if (bomber == null) {
             lapiz.drawImage(nin.getImagenac().getImage(), nin.getPosx(), nin.getPosy(), Lienzo);
