@@ -5,7 +5,7 @@ Se necesita un catalogo de personajes en el que nuestros personajes tengan la po
 
 ### Analisis del problema:
 
-![DiagaramaCatalogo](imagenes/DiagramaCatalogo.png)
+![DiagramaCatalogo](imagenes/DiagramaCatalogo.png)
 
 Para esta situación utilizaremos el patron abstract factory para guardar los sprites de nuestros personajes (bomberman,ninja) ,tambien utilizamos el "MVC" para poder manejar de forma mas adecuada la interfaz gráfica . 
 
