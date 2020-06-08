@@ -13,11 +13,11 @@ Para esta situación utilizaremos el patron abstract factory para guardar los sp
 ##### Modelo,vista,Contolador (MVC):
 Este principio lo podemos ver reflejada en la parte del menu, donde si se selecciona algun personaje con el respectivo boton, la clase VistaMenu llama a la clase controladorMenu, la cual esta que personaje se va usar, y por ultimo llama a la clase Modelo, a traves de la clase vista, y esta clase modelo  guarda todos los datos y es la encargada de manejar el sistema de movimientos.
 
-![image002](imagenes/image002.png)
+![image002](imagenes/image002.jpg)
 
-![image003](imagenes/image003.png)
+![image003](imagenes/image003.jpg)
 
-![image004](imagenes/image004.png)
+![image004](imagenes/image004.jpg)
 
 
 ### Requerimientos
@@ -30,11 +30,11 @@ _Nota: si no se tiene instalado puede seguir el siguiente intructivo._
 **Instalar Java Development Kit:**
 1. Descargamos el instalador de Java Development Kit en [https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html).
 
-![image005](imagenes/image005.png)
+![image005](imagenes/image005.jpg)
 
 2. Ejecutar el instalador e instalar el Java Development Kit:
 
-![image006](imagenes/image006.png)
+![image006](imagenes/image006.jpg)
 
 
 
@@ -43,11 +43,11 @@ _Nota: si no se tiene instalado puede seguir el siguiente intructivo._
 1. Descargamos el instalador de Netbeans en:
 [https://netbeans.apache.org/download/index.html](https://netbeans.apache.org/download/index.html).
 
-![image007](imagenes/image007.png)
+![image007](imagenes/image007.jpg)
 
 2. Ejecutamos el instalador e instalar el Netbeans:
 
-![image008](imagenes/image008.png)
+![image008](imagenes/image008.jpg)
 
 
 
