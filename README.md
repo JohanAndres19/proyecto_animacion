@@ -50,6 +50,19 @@ _Nota: si no se tiene instalado puede seguir el siguiente intructivo._
 ![image008](imagenes/image008.jpg)
 
 
-
-            
 ### Manual de usuario:
+En el menu tenemos dos personajes (bomberman,ninja) cada uno con su respectivo boton para acceder a la animacion
+
+![image009](imagenes/image009.jpg)
+
+* **Bomberman.**
+Cuando Presionamos el boton Personaje1, entraremos a la animacion de Bomberman y tenemos la posibilidad de movernos en 4 direcciones (arriba,izquierda,derecha ,abajo)presionando los botones respectivos en el teclado y realizar un movimiento especial con la tecla espacio que en este caso es la muerte del personaje.
+
+![image010](imagenes/image010.jpg)
+
+* **Ninja.**
+Cuando Presionamos el boton Personaje2, entraremos a la animacion del ninja y tenemos la posibilidad de movernos en 4 direcciones (arriba,izquierda,derecha ,abajo)presionando los botones respectivos en el teclado y realizar un movimiento especial con la tecla espacio que en este caso es lanzar un puño.
+
+![image011](imagenes/image011.jpg)
+
+_Nota: Para volver al menu de seleccion de personajes debemos realizar el movimiento especial del personaje 5 veces, y presionar la tecla escape._ 
